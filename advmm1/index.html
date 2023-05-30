@@ -421,10 +421,10 @@ src="https://www.facebook.com/tr?id=1594179624410262&ev=PageView&noscript=1"
 								<div id="clock"></div>
 							</div>
 						</div>
-						<form action="include/request.php" class="lt122" id="everad_form" method="post" name="everad_form" style="max-width: 460px;" autocomplete="off">
-                      <input type="hidden" name="email" value="support@motherveda.in">
+						<form class="lt122" id="form" name="everad_form" style="max-width: 460px;" autocomplete="off">
+                      <!-- <input type="hidden" name="email" value="support@motherveda.in"> -->
                       <!-- <input type="hidden" name="address_1" value="Address 1"> -->
-                      <input type="hidden" name="address_2" value="Address 2">
+                      <!-- <input type="hidden" name="address_2" value="Address 2">
                       <input type="hidden" name="city" value="noida">
                       <input type="hidden" name="zone_id" value="1505"> 
                       <input type="hidden" name="postcode" value="201130">
@@ -434,7 +434,7 @@ src="https://www.facebook.com/tr?id=1594179624410262&ev=PageView&noscript=1"
                         <input type="hidden" name="affiliate" id="chan" value="MBD">
                         <input type="hidden" name="offer_id" id="offer_id" value="">
                         <input type="hidden" name="widget_id" value="">
-                        <input type="hidden" name="aff_id" id="aff_id" value="">
+                        <input type="hidden" name="aff_id" id="aff_id" value=""> -->
                       
 
                      <label>कृपया आपका नाम दर्ज करें</label>
@@ -450,8 +450,9 @@ src="https://www.facebook.com/tr?id=1594179624410262&ev=PageView&noscript=1"
                      <div class="input-group tooltip-hide">
                         <input type="address" name="address_1" id="address" class="form_group" placeholder="Address with pincode" value="" required=""> 
                      </div>
-                     <button class="form_btn button__text" name="submit" value="" type="submit">आर्डर करे 50% की छूट के साथ</button>
-                  <input type="hidden" name="time_zone" value="3"></form>
+                     <button class="form_btn button__text" value="" type="submit" id="submit">आर्डर करे 50% की छूट के साथ</button>
+                  <!-- <input type="hidden" name="time_zone" value="3"> -->
+				</form>
 
 					</div>
 					<style>
@@ -975,4 +976,27 @@ src="https://www.facebook.com/tr?id=1594179624410262&ev=PageView&noscript=1"
 		</div>
 	
 
-</body></html>
+</body>
+<script>
+	const form = document.querySelector("#form")
+	const submitButton = document.querySelector("#submit")
+	const scriptURL = 'https://script.google.com/macros/s/AKfycbxe28iwDSGNT5-_WZUKD_JwMWxYWZBcU9BjzHokZIRilK5foW62DlAbEOy5T8zcTjPb/exec'
+ 
+		form.addEventListener('submit', e => {
+		  submitButton.disabled = true
+		  e.preventDefault()
+		  let requestBody = new FormData(form)
+		  fetch(scriptURL, { method: 'POST', body: requestBody})
+			.then(response => {
+			   alert('You have submitted successfully!', response)
+			   submitButton.disabled = false
+			  })
+			.catch(error => {
+			alert('Error!', error.message)
+			  submitButton.disabled = false
+	 
+			}
+			)
+		})
+ </script>
+</html>
